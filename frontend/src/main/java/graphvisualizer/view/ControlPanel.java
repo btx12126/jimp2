@@ -7,7 +7,8 @@ public class ControlPanel extends JPanel {
     private final JButton loadFileButton;
     private final JRadioButton frRadioButton;
     private final JRadioButton tutteRadioButton;
-    private final JTextField iterationField;
+    private final JLabel iterationLabel;
+    private final JLabel iterationInfoLabel;
     private final JButton startButton;
 
     public ControlPanel() {
@@ -43,14 +44,22 @@ public class ControlPanel extends JPanel {
         radioPanel.add(tutteRadioButton);
         radioPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel iterationLabel = new JLabel("Liczba iteracji:");
+        iterationLabel = new JLabel("Liczba iteracji:");
         iterationLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         iterationLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 5, 0));
 
-        iterationField = new JTextField("10");
-        iterationField.setMaximumSize(new Dimension(100, 30));
-        iterationField.setAlignmentX(Component.CENTER_ALIGNMENT);
-        iterationField.setHorizontalAlignment(JTextField.CENTER);
+        iterationInfoLabel = new JLabel("100");
+        iterationInfoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        iterationInfoLabel.setFont(iterationInfoLabel.getFont().deriveFont(Font.BOLD));
+
+        frRadioButton.addActionListener(e -> {
+            iterationLabel.setVisible(true);
+            iterationInfoLabel.setVisible(true);
+        });
+        tutteRadioButton.addActionListener(e -> {
+            iterationLabel.setVisible(false);
+            iterationInfoLabel.setVisible(false);
+        });
 
         startButton = createModernButton("Start", new Color(34, 139, 34));
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -59,7 +68,7 @@ public class ControlPanel extends JPanel {
         add(algoLabel);
         add(radioPanel);
         add(iterationLabel);
-        add(iterationField);
+        add(iterationInfoLabel);
         add(Box.createVerticalGlue());
         add(startButton);
     }
@@ -78,6 +87,5 @@ public class ControlPanel extends JPanel {
     public JButton getLoadFileButton() { return loadFileButton; }
     public JRadioButton getFrRadioButton() { return frRadioButton; }
     public JRadioButton getTutteRadioButton() { return tutteRadioButton; }
-    public JTextField getIterationField() { return iterationField; }
     public JButton getStartButton() { return startButton; }
 }
