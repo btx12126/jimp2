@@ -6,7 +6,7 @@ import graphvisualizer.model.Node;
 import javax.swing.JPanel;
 import java.awt.*;
 
-public class GraphCanvas extends JPanel {
+public class GraphCanvas extends JPanel implements CanvasInterface {
     private double offsetX=0, offsetY=0;
     private double scale=1.0;
     private final GraphModel graphModel;

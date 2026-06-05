@@ -5,11 +5,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
 public class ViewportController extends MouseAdapter {
-    private final GraphCanvas canvas;
+    private final CanvasInterface canvas;
     private int lastX;
     private int lastY;
 
-    public ViewportController(GraphCanvas canvas){
+    public ViewportController(CanvasInterface canvas){
         this.canvas=canvas;
     }
 
