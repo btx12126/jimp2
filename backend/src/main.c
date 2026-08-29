@@ -47,21 +47,20 @@ int main(int argc, char* argv[]) {
         return EXIT_FAILURE;
     }
 
-    if (is_planar(g)){
-        if (config.output_file) {
-            if (config.verbose) printf("Zapisywanie wynikow do %s (format: %s)...\n", config.output_file, config.format);
-            if (strcmp(config.format, "bin") == 0) {
-                save_graph_bin(config.output_file, g);
-            }
-            else {
-                save_graph_txt(config.output_file, g);
-            }
-        }
-    }
-    else {
+    if (strcmp(config.algorithm, "tutte") == 0 && !is_planar(g)) {
         fprintf(stderr, "Error: graph isn't plannary\n");
         free_graph(g);
         return EXIT_FAILURE;
+    }
+
+    if (config.output_file) {
+        if (config.verbose) printf("Zapisywanie wynikow do %s (format: %s)...\n", config.output_file, config.format);
+        if (strcmp(config.format, "bin") == 0) {
+            save_graph_bin(config.output_file, g);
+        }
+        else {
+            save_graph_txt(config.output_file, g);
+        }
     }
 
     free_graph(g);

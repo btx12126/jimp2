@@ -5,3 +5,8 @@
 *.opendb
 *.db-shm
 *.db-wal
+.idea/
+out/
+target/
+backend/build/
+wynik*.txt
